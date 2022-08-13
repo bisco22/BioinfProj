@@ -1,0 +1,1 @@
+ribozyme TR_D_gene TR_J_pseudogene sRNA IG_J_pseudogene  Mt_rRNA non_coding

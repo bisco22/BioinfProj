@@ -1,0 +1,22 @@
+Script:					 project.R
+
+Date and Time:				 2022-08-13 14:53:59
+
+Inputs
+	-Categories folder's path:	 C:/Users/Alessandro Biscontin/Desktop/Genetica e Bioinformatica/Bioinformatica/Project/Input/path.txt 
+	-Tissue selected:			 adiposeSubcut 
+	-Threshold expScores:		 10 
+	-Input files:
+ 						 1.txt 
+ 						 2.txt 
+ 						 3.txt 
+
+Outputs
+	-tibble for:
+ 						 1.txt 
+ 						 2.txt 
+ 						 3.txt 
+
+
+Errors
+	
