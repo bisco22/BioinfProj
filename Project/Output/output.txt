@@ -1,0 +1,20 @@
+Script:										 project.R
+
+Date and Time of execution:							 2022-08-18 17:56:51
+
+Inputs
+	-File containing the path to the categories folder:		 C:/Users/Alessandro Biscontin/Desktop/Genetica e Bioinformatica/Bioinformatica/Project/Input/path.txt 
+	-Tissue selected:								 adiposeSubcut 
+	-Threshold expScores:							 100
+	-Input files:
+ 											 DSP_HR.txt 
+ 											 MAPK11_Interactors.txt 
+ 											 Repair_of_DNA_Enrichment.txt 
+
+Outputs
+	-tibbles generated from the following grouped categories:
+ 											 DSP_HR 
+ 											 MAPK11_Interactors 
+ 											 Repair_of_DNA_Enrichment 
+
+
