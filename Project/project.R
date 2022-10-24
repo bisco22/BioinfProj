@@ -1,8 +1,3 @@
-library(scriptName)
-#setting the working directory
-filename <- current_filename()
-setwd(dirname(filename))
-
 #load of the function
 source("geneExpressionPerTissue.R")
 
