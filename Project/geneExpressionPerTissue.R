@@ -13,7 +13,7 @@
 
 geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   
-  #create the output folder (checking if exists first)
+  #create the output folder (check if it exists first)
   if(!dir.exists("./Output"))
     dir.create("./Output")
 
