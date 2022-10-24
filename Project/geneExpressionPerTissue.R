@@ -38,19 +38,6 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   if(!dir.exists("./Output"))
     dir.create("./Output")
   
-  #get the name of the script that called the function
-  filename <- current_filename()
-  if (is.null(filename)){
-    scriptName <- "Unknown"
-    warnings[["Filename"]] <- "Can't get the script filename"
-  }
-  else {
-    filename <- strsplit(filename, "/")
-    scriptName <- last(filename[[1]])
-  }
-  
-  
-  
   #check of the inputs
   if(!is.character(fileInput)){
     errors[["fileInputType"]] <- "\t-Input file must be character"

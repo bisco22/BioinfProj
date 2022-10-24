@@ -2,13 +2,13 @@
 source("geneExpressionPerTissue.R")
 
 #file where is stored the path to the folder containing the text files
-fileInput <- paste(dirname(filename), "/Input/path.txt", sep = "")
+fileInput <- paste(getwd(), "/Input/path.txt", sep = "")
 
 #tissue selected
 tissue <- "adiposeSubcut"
 
 #threshold level for expScores
-threshold <- 10
+threshold <- "CIAO"
 
 #apply the function to 
 tibbles <- geneExpressionPerTissue(fileInput, tissue, threshold)
