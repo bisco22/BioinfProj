@@ -20,7 +20,7 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   errors <- list()
   
   #creating list of packages needed
-  packages <- c("DBI","RMySQL","RMariaDB","tibble","dplyr","sys","tidyr","magrittr","scriptName")
+  packages <- c("DBI","RMySQL","RMariaDB","tibble","dplyr","sys","tidyr","magrittr")
   
   #check packages existence
   for (package in packages){
