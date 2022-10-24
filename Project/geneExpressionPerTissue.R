@@ -37,9 +37,9 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
       write(paste("\nError\n", errors[["Package"]], "Output/output.txt"), append = TRUE)
       stop(errors[["Package"]])
     }
-      else{
-        library(package)
-      }
+    else{
+      library(package)
+    }
   }  
   
   #check of the inputs
