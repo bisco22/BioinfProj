@@ -1,11 +1,20 @@
 Script:										 geneExpressionPerTissue.R
 
-Date and Time of execution:							 2022-10-24 11:40:28
+Date and Time of execution:							 2022-10-24 12:24:24
 
 Inputs
 	-File containing the path to the categories folder:		 C:/Users/Alessandro Biscontin/Documents/GitHub/BioinfProj/Project/Input/path.txt 
 	-Tissue selected:								 adiposeSubcut 
-	-Threshold expScores:							 CIAO
+	-Threshold expScores:							 10
+	-Input files:
+ 											 DSP_HR.txt 
+ 											 MAPK11_Interactors.txt 
+ 											 Repair_of_DNA_Enrichment.txt 
 
-Error
- 	-Threshold must be numeric
+Outputs
+	-tibbles generated from the following grouped categories:
+ 											 DSP_HR 
+ 											 MAPK11_Interactors 
+ 											 Repair_of_DNA_Enrichment 
+
+
