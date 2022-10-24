@@ -9,6 +9,13 @@
 
 geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   
+  #create the output folder (checking if exists first)
+  if(!dir.exists("./Output"))
+    dir.create("./Output")
+
+  #creating the output file 
+  
+
   #write name of the script, date and time and the inputs of the function in the txt output file
   scriptLine <- paste("Script:\t\t\t\t\t\t\t\t\t\t geneExpressionPerTissue.R")
   timeLine <- paste("\nDate and Time of execution:\t\t\t\t\t\t\t", Sys.time())
@@ -33,10 +40,6 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   
   #load needed packages
   lapply(packages, library, character.only = TRUE)
-  
-  #create the output folder (checking if exists first)
-  if(!dir.exists("./Output"))
-    dir.create("./Output")
   
   #check of the inputs
   if(!is.character(fileInput)){
