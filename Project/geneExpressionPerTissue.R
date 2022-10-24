@@ -33,7 +33,7 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   #check existence and load the packages
   for (package in packages){
     if(is.na(match(package,installed.packages()))){
-      errors[['Package']] <- paste(package,"Package not installed")
+      errors[['Package']] <- paste(package,"package not installed")
       write(paste("\nError\n", errors[["Package"]], "Output/output.txt"), append = TRUE)
       stop(errors[["Package"]])
     }
