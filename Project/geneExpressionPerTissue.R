@@ -1,23 +1,42 @@
 #
 # This function takes as inputs:
-#   -a path to a folder where are stored grouped categories of genes
-#   -a name of a tissue, and 
-#   -a threshold level.
+#   -the path to a folder where are stored grouped categories of genes
+#   -the name of a tissue, and 
+#   -the threshold level.
 # The name of the tissue is referred to the field 'name' of the 'gtexTissueV8' table
 # of the 'hgFixed' database (e.g. "adiposeSubcut")
 #
 
 geneExpressionPerTissue <- function(fileInput, tissue, threshold){
-  #load needed packages
-  lapply(c("DBI","RMySQL","RMariaDB","tibble","dplyr","sys","tidyr","magrittr","scriptName"), library, character.only = TRUE)
   
-  #create the output folder (checking if exists first)
-  if(!dir.exists("./Output"))
-    dir.create("./Output")
+  #write name of the script, date and time and the inputs of the function in the txt output file
+  scriptLine <- paste("Script:\t\t\t\t\t\t\t\t\t\t geneExpressionPerTissue.R")
+  timeLine <- paste("\nDate and Time of execution:\t\t\t\t\t\t\t", Sys.time())
+  inputsSect <- paste("\nInputs\n\t-File containing the path to the categories folder:\t\t",fileInput,"\n\t-Tissue selected:\t\t\t\t\t\t\t\t",tissue,"\n\t-Threshold expScores:\t\t\t\t\t\t\t",threshold)
+  write(c(scriptLine,timeLine, inputsSect), "./Output/output.txt", sep = "\n")
   
   #initialize warnings and errors lists
   warnings <- list()
   errors <- list()
+  
+  #creating list of packages needed
+  packages <- c("DBI","RMySQL","RMariaDB","tibble","dplyr","sys","tidyr","magrittr","scriptName")
+  
+  #check packages existence
+  for (package in packages){
+    if(is.na(match(package,installed.packages()))){
+      errors[['Package']] <- paste(package,"Package not installed")
+      write(paste("\nError\n", errors[["Package"]], "Output/output.txt"), append = TRUE)
+      stop(errors[["Package"]])
+    }
+  }  
+  
+  #load needed packages
+  lapply(packages, library, character.only = TRUE)
+  
+  #create the output folder (checking if exists first)
+  if(!dir.exists("./Output"))
+    dir.create("./Output")
   
   #get the name of the script that called the function
   filename <- current_filename()
@@ -30,14 +49,7 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
     scriptName <- last(filename[[1]])
   }
   
-  #write name of the script, date and time and the inputs of the function in the txt output file
-  scriptLine <- paste("Script:\t\t\t\t\t\t\t\t\t\t", scriptName)
-  timeLine <- paste("\nDate and Time of execution:\t\t\t\t\t\t\t", Sys.time())
-  inputsSect <- paste("\nInputs\n\t-File containing the path to the categories folder:\t\t",fileInput,"\n\t-Tissue selected:\t\t\t\t\t\t\t\t",tissue,"\n\t-Threshold expScores:\t\t\t\t\t\t\t",threshold)
-  write(c(scriptLine,timeLine, inputsSect), "./Output/output.txt", sep = "\n")
   
-  #initialize the outputs section
-  outputsSect <- "Outputs\n\t-tibbles generated from the following grouped categories:\n"
   
   #check of the inputs
   if(!is.character(fileInput)){
@@ -90,7 +102,7 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   con <- dbConnect(drv = RMariaDB::MariaDB(), username = "genomep", password = "password", db = "hg38", host = "genome-mysql.soe.ucsc.edu", port = 3306)
   
   #create the list of tibbles to store results
-  tibbles <- lst()
+  tibbles <- list()
   
   #adding input files caption to input section
   inputsSect <- "\t-Input files:\n"
@@ -130,6 +142,9 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
     #save the results in the list of tibbles
     tibbles[[strsplit(file, "\\.")[[1]][1]]] <- wide
   }
+  
+  #initialize the outputs section
+  outputsSect <- "Outputs\n\t-tibbles generated from the following grouped categories:\n"
   
   #add tibbles to outputs section of the txt file
   outputsText <- paste("\t\t\t\t\t\t\t\t\t\t\t", names(tibbles), "\n", collapse = " ")
