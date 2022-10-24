@@ -7,8 +7,8 @@ fileInput <- paste(getwd(), "/Input/path.txt", sep = "")
 #tissue selected
 tissue <- "adiposeSubcut"
 
-#threshold level for expScores
-threshold <- "CIAO"
+#threshold level for ex"pScores
+threshold <- 10
 
 #apply the function to 
 tibbles <- geneExpressionPerTissue(fileInput, tissue, threshold)
