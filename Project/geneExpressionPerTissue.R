@@ -1,8 +1,12 @@
 #
 # This function takes as inputs:
-#   -the path to a folder where are stored grouped categories of genes
+#   -the path to a folder where files of grouped categories of genes are stored 
 #   -the name of a tissue, and 
 #   -the threshold level.
+# 
+# In the GitHub repository the folder in which  the files of grouped categories are stored
+# is "./Input/Categories"
+#
 # The name of the tissue is referred to the field 'name' of the 'gtexTissueV8' table
 # of the 'hgFixed' database (e.g. "adiposeSubcut")
 #
@@ -12,9 +16,6 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   #create the output folder (checking if exists first)
   if(!dir.exists("./Output"))
     dir.create("./Output")
-
-  #creating the output file 
-  
 
   #write name of the script, date and time and the inputs of the function in the txt output file
   scriptLine <- paste("Script:\t\t\t\t\t\t\t\t\t\t geneExpressionPerTissue.R")
@@ -26,20 +27,20 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
   warnings <- list()
   errors <- list()
   
-  #creating list of packages needed
+  #create list of packages needed
   packages <- c("DBI","RMySQL","RMariaDB","tibble","dplyr","sys","tidyr","magrittr")
   
-  #check packages existence
+  #check existence and load the packages
   for (package in packages){
     if(is.na(match(package,installed.packages()))){
       errors[['Package']] <- paste(package,"Package not installed")
       write(paste("\nError\n", errors[["Package"]], "Output/output.txt"), append = TRUE)
       stop(errors[["Package"]])
     }
+      else{
+        library(package)
+      }
   }  
-  
-  #load needed packages
-  lapply(packages, library, character.only = TRUE)
   
   #check of the inputs
   if(!is.character(fileInput)){
