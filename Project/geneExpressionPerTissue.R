@@ -104,7 +104,7 @@ geneExpressionPerTissue <- function(fileInput, tissue, threshold){
     inputsSect <- paste(inputsSect,"\t\t\t\t\t\t\t\t\t\t\t", file, "\n")
     
     #retrieve genes inside the category file
-    #skip = 1 because examples files always start with a copyright caption on line 1
+    #skip = 1 because example files always start with a copyright caption on line 1
     #the header is on the 2nd line
     table <- read.table(paste(path, file, sep = "\\"), header = TRUE, skip = 1, sep="\t", quote = "\"")
     genes <- toString(sprintf("'%s'", table[,1]))
