@@ -4,7 +4,7 @@
 #   -the name of a tissue, and 
 #   -the threshold level.
 # 
-# In the GitHub repository the folder in which  the files of grouped categories are stored
+# In the GitHub repository the folder in which the files of grouped categories are stored
 # is "./Input/Categories"
 #
 # The name of the tissue is referred to the field 'name' of the 'gtexTissueV8' table
